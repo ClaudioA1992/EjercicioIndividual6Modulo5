@@ -8,6 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+
+import cl.awakelab.ejercicioindividual6mdulo5.databinding.FragmentFocusBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FocusFragment#newInstance} factory method to
@@ -40,8 +44,8 @@ public class FocusFragment extends Fragment {
     public static FocusFragment newInstance(String param1, String param2) {
         FocusFragment fragment = new FocusFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM1, "param1");
+        args.putString(ARG_PARAM2, "param2");
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,15 +54,23 @@ public class FocusFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString("url");
+            mParam2 = getArguments().getString("desc");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_focus, container, false);
+
+        System.out.println("Image: " + mParam1);
+        System.out.println("Desc: " + mParam2);
+
+        FragmentFocusBinding binding = FragmentFocusBinding.inflate(getLayoutInflater());
+
+        Glide.with(binding.getRoot()).load(mParam1).into(binding.imageViewFocus);
+        binding.textViewFocus.setText(mParam2);
+
+        return binding.getRoot();
     }
 }

@@ -9,5 +9,14 @@
         android:id="@+id/firstFragment"
         android:name="cl.awakelab.ejercicioindividual6mdulo5.FirstFragment"
         android:label="fragment_first"
-        tools:layout="@layout/fragment_first" />
+        tools:layout="@layout/fragment_first" >
+        <action
+            android:id="@+id/action_firstFragment_to_focusFragment"
+            app:destination="@id/focusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/focusFragment"
+        android:name="cl.awakelab.ejercicioindividual6mdulo5.FocusFragment"
+        android:label="fragment_focus"
+        tools:layout="@layout/fragment_focus" />
 </navigation>
